@@ -1,39 +1,59 @@
 # CpfHelper
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cpf_helper`. To experiment with that code, run `bin/console` for an interactive prompt.
+CpfHelper is a Ruby gem for validating and generating Brazilian CPF numbers.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add cpf_helper
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install cpf_helper
 
 ## Usage
 
-TODO: Write usage instructions here
+To validate a CPF number:
 
-## Development
+```ruby
+require 'cpf_helper'
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+CpfHelper.valid?('875.200.930-00') # => true or false
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To mask a CPF number:
+
+if the CPF number is valid, it will return a masked version of the CPF number, otherwise it will return nil.
+
+```ruby
+require 'cpf_helper'
+masked_cpf = CpfHelper.mask('87520093000') # => '875.***.***-00'
+```
+
+To format a CPF number:
+
+if the CPF number is valid, it will return a formatted version of the CPF number, otherwise it will return nil.
+
+```ruby
+require 'cpf_helper'
+formatted_cpf = CpfHelper.format('87520093000') # => '875.200.930-00'
+```
+
+To clean a CPF number (remove formatting):
+
+if the CPF number is valid, it will return a cleaned version of the CPF number, otherwise it will return nil.
+
+```ruby
+require 'cpf_helper'
+cleaned_cpf = CpfHelper.clean('875.200.930-00') # => '87520093000'
+```
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cpf_helper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/cpf_helper/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/your-username/cpf_helper.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the CpfHelper project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/cpf_helper/blob/main/CODE_OF_CONDUCT.md).
+This project is licensed under the MIT License.
